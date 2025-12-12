@@ -47,3 +47,6 @@ build/
 # Backup files
 *.bak
 *.backup
+
+# ai_outputs
+ai/
