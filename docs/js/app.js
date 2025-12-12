@@ -8,89 +8,6 @@ if (typeof AOS !== 'undefined') {
     });
 }
 
-// Initialize Particles.js - with error handling
-if (typeof particlesJS !== 'undefined') {
-    particlesJS('particles-js', {
-        particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: {
-            value: '#6366f1'
-        },
-        shape: {
-            type: 'circle'
-        },
-        opacity: {
-            value: 0.3,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 2,
-                size_min: 0.1,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#6366f1',
-            opacity: 0.2,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 1,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: {
-                enable: true,
-                mode: 'grab'
-            },
-            onclick: {
-                enable: true,
-                mode: 'push'
-            },
-            resize: true
-        },
-        modes: {
-            grab: {
-                distance: 140,
-                line_linked: {
-                    opacity: 0.5
-                }
-            },
-            push: {
-                particles_nb: 4
-            }
-        }
-    },
-    retina_detect: true
-    });
-}
-
 // Scroll Progress Bar
 window.addEventListener('scroll', () => {
     const scrollProgress = document.getElementById('scroll-progress');
@@ -98,6 +15,53 @@ window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / windowHeight) * 100;
     scrollProgress.style.width = scrolled + '%';
 });
+
+// Custom Cursor Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+    
+    // Only enable on non-touch devices
+    if (window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 16}px, ${e.clientY - 16}px)`;
+            cursorDot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+        });
+
+        // Add hover effect for clickable elements
+        const clickableElements = document.querySelectorAll('a, button, input, .timeline-card, .grid-card');
+        clickableElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover-active');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover-active');
+            });
+        });
+    }
+});
+
+// Typewriter Effect
+function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = '';
+    element.classList.add('typewriter-cursor');
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            // Remove cursor after typing finishes
+            setTimeout(() => {
+                element.classList.remove('typewriter-cursor');
+            }, 1000);
+        }
+    }
+    
+    type();
+}
 
 // Global State
 let allModels = [];
@@ -122,11 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
         i18n.setLanguage(newLang);
         updateLangDisplay();
+        
+        // Retrigger typewriter effect on language change
+        const titleElement = document.querySelector('h2[data-i18n="header.title"]');
+        if (titleElement) {
+            typeWriter(titleElement, i18n.t('header.title'));
+        }
     });
     
     // Initialize language display
     updateLangDisplay();
     i18n.updatePageContent();
+    
+    // Trigger initial typewriter effect
+    const titleElement = document.querySelector('h2[data-i18n="header.title"]');
+    if (titleElement) {
+        // Wait a bit for page load
+        setTimeout(() => {
+            typeWriter(titleElement, i18n.t('header.title'));
+        }, 500);
+    }
 });
 
 // Listen for language changes to update dynamic content
@@ -293,10 +272,41 @@ function renderModels() {
         return createGridCard(model, index);
     }).join('');
     
+    // Initialize 3D Tilt Effect
+    initTiltEffect();
+    
     // Reinitialize AOS for new elements
     if (typeof AOS !== 'undefined') {
         AOS.refresh();
     }
+}
+
+// 3D Tilt Effect Initialization
+function initTiltEffect() {
+    // Only enable on non-touch devices
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    
+    const cards = document.querySelectorAll('.timeline-card, .grid-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top;  // y position within the element
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+            const rotateY = ((x - centerX) / centerX) * 5;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+    });
 }
 
 // Create Timeline Card
@@ -308,9 +318,6 @@ function createTimelineCard(model, isLeft, index) {
         month: 'long', 
         day: 'numeric' 
     });
-    
-    // Display full date prominently in the timeline opposite side
-    // const displayYear = date.getFullYear();
     
     // Get description based on current language
     const description = typeof model.description === 'object' 
@@ -335,7 +342,7 @@ function createTimelineCard(model, isLeft, index) {
     
     // Construct Card HTML
     const cardHtml = `
-        <div class="timeline-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 group">
+        <div class="timeline-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 group">
             <div class="flex items-start justify-between mb-3">
                 <div class="flex-1">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary transition-colors">
@@ -360,7 +367,7 @@ function createTimelineCard(model, isLeft, index) {
                     ${tags}
                 </div>
                 <a href="${model.repo}" target="_blank" 
-                   class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105">
+                   class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105 transform hover:-translate-y-1">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -435,7 +442,7 @@ function createGridCard(model, index) {
     }).join('');
     
     return `
-        <div class="grid-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 group" 
+        <div class="grid-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 group" 
              data-aos="fade-up" 
              data-aos-delay="${index * 50}">
             <div class="flex items-start justify-between mb-3">
@@ -461,7 +468,7 @@ function createGridCard(model, index) {
             </div>
             
             <a href="${model.repo}" target="_blank" 
-               class="inline-flex items-center justify-center w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105">
+               class="inline-flex items-center justify-center w-full px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105 transform hover:-translate-y-1">
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>

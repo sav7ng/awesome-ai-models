@@ -36,9 +36,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
@@ -48,10 +45,14 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <!-- Particles Background -->
-    <div id="particles-js" class="fixed inset-0 pointer-events-none"></div>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 custom-cursor-none">
+    <!-- Dynamic Gradient Background -->
+    <div class="fixed inset-0 pointer-events-none -z-10 gradient-bg"></div>
     
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-8 h-8 rounded-full border border-primary pointer-events-none z-50 transition-transform duration-100 hidden md:block mix-blend-difference"></div>
+    <div id="cursor-dot" class="fixed w-2 h-2 rounded-full bg-primary pointer-events-none z-50 hidden md:block"></div>
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary z-50 transition-all duration-300" style="width: 0%"></div>
     
