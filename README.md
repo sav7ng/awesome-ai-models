@@ -28,7 +28,7 @@
 
 ### 在线访问
 
-直接访问：[https://sav7ng.github.io/awesome-ai-models/](https://sav7ng.github.io/awesome-ai-models/)
+直接访问：[https://ai.sav7ng.com](https://ai.sav7ng.com)
 
 ### 本地运行
 
