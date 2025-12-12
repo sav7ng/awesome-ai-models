@@ -62,21 +62,23 @@ php -S localhost:8000
 
 ## 📊 收录模型
 
-目前收录了 **28+** 个知名开源 AI 模型，包括：
+目前收录了 **35+** 个知名开源 AI 模型，包括：
 
 ### 大语言模型 (LLM)
-- LLaMA / LLaMA 2 / LLaMA 3 (Meta)
+- LLaMA 1/2/3/3.1/3.2/4 (Meta)
+- DeepSeek-V2 / V3 / R1 (DeepSeek)
+- Qwen 2 / 2.5 (Alibaba)
+- Gemma / Gemma 2 (Google)
 - Mistral 7B / Mixtral 8x7B (Mistral AI)
-- Gemma (Google)
-- DeepSeek-V2 (DeepSeek)
-- Qwen 2 (Alibaba)
+- Phi-3 (Microsoft)
 - Grok-1 (xAI)
 - 以及更多...
 
 ### 多模态模型
+- Llama 3.2 (Meta)
+- Qwen 2 / 2.5 (Alibaba)
 - CLIP (OpenAI)
 - LLaVA (Microsoft)
-- Qwen 2 (Alibaba)
 
 ### 视觉模型
 - Stable Diffusion (Stability AI)
@@ -98,10 +100,14 @@ php -S localhost:8000
 {
   "name": "模型名称",
   "org": "组织名称",
+  "logoUrl": "https://github.com/...",
   "date": "YYYY-MM-DD",
   "repo": "https://github.com/...",
   "tags": ["LLM"],
-  "description": "简短描述"
+  "description": {
+    "zh-CN": "中文描述",
+    "en": "English description"
+  }
 }
 ```
 
