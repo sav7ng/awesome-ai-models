@@ -158,7 +158,7 @@ awesome-ai-models/
 - 完整的界面翻译
 - 日期格式本地化
 
-详细文档：[I18N_GUIDE.md](docs/I18N_GUIDE.md)
+详细文档：[I18N_GUIDE.md](I18N_GUIDE.md)
 
 ### ✨ 动效系统
 - 粒子背景动态效果
