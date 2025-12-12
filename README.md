@@ -27,7 +27,7 @@
 
 ### 在线访问
 
-直接访问：[https://ai.sav7ng.com/](https://ai.sav7ng.com/)
+直接访问：[https://ai.sav7ng.com](https://ai.sav7ng.com)
 
 ### 本地运行
 
