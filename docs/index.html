@@ -42,6 +42,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <!-- i18n -->
+    <script src="js/i18n.js"></script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
 </head>
@@ -60,15 +63,22 @@
                 <div class="flex items-center space-x-3">
                     <div class="text-3xl">🤖</div>
                     <div>
-                        <h1 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" data-i18n="nav.title">
                             Awesome AI Models
                         </h1>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">开源 AI 模型时间线</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400" data-i18n="nav.subtitle">开源 AI 模型时间线</p>
                     </div>
                 </div>
                 
                 <!-- Actions -->
                 <div class="flex items-center space-x-4">
+                    <!-- Language Switcher -->
+                    <button id="langToggle" 
+                            class="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium text-gray-700 dark:text-gray-300"
+                            aria-label="切换语言">
+                        🌐 <span id="langText">中文</span>
+                    </button>
+                    
                     <!-- GitHub Link -->
                     <a href="https://github.com/sav7ng/awesome-ai-models" target="_blank" 
                        class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
@@ -81,6 +91,7 @@
                     <!-- Theme Toggle -->
                     <button @click="dark = !dark" 
                             class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            data-i18n="nav.theme"
                             aria-label="切换主题">
                         <svg x-show="!dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -98,10 +109,10 @@
     <main class="container mx-auto px-4 py-12 relative z-10">
         <!-- Header Section -->
         <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent" data-i18n="header.title">
                 开源 AI 模型演进
             </h2>
-            <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+            <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto" data-i18n="header.description">
                 探索改变世界的开源人工智能模型，见证 AI 民主化的历程
             </p>
         </div>
@@ -113,6 +124,7 @@
                 <div class="mb-6">
                     <input type="text" 
                            id="searchInput"
+                           data-i18n="search.placeholder"
                            placeholder="🔍 搜索模型名称或组织..." 
                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                 </div>
@@ -121,13 +133,13 @@
                 <div class="space-y-4">
                     <!-- Organization Filter -->
                     <div>
-                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">组织</label>
+                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block" data-i18n="filter.organization">组织</label>
                         <div class="flex flex-wrap gap-2" id="orgFilters"></div>
                     </div>
                     
                     <!-- Type Filter -->
                     <div>
-                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">类型</label>
+                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block" data-i18n="filter.type">类型</label>
                         <div class="flex flex-wrap gap-2" id="typeFilters"></div>
                     </div>
                 </div>
@@ -137,12 +149,14 @@
                     <div class="flex gap-2">
                         <button @click="view = 'timeline'" 
                                 :class="view === 'timeline' ? 'bg-primary text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
-                                class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105">
+                                class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105"
+                                data-i18n="view.timeline">
                             📅 时间线
                         </button>
                         <button @click="view = 'grid'" 
                                 :class="view === 'grid' ? 'bg-primary text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
-                                class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105">
+                                class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105"
+                                data-i18n="view.grid">
                             📊 网格
                         </button>
                     </div>
@@ -160,7 +174,7 @@
         <!-- Empty State -->
         <div id="emptyState" class="hidden text-center py-20">
             <div class="text-6xl mb-4">🔍</div>
-            <p class="text-xl text-gray-500 dark:text-gray-400">未找到匹配的模型</p>
+            <p class="text-xl text-gray-500 dark:text-gray-400" data-i18n="empty.title">未找到匹配的模型</p>
         </div>
     </main>
     
@@ -168,12 +182,12 @@
     <footer class="relative z-10 border-t border-gray-200 dark:border-gray-800 mt-20">
         <div class="container mx-auto px-4 py-8">
             <div class="text-center text-gray-600 dark:text-gray-400">
-                <p class="mb-2">
+                <p class="mb-2" data-i18n="footer.tagline">
                     Made with ❤️ for the Open Source AI Community
                 </p>
                 <p class="text-sm">
-                    © 2024 Awesome AI Models. 
-                    <a href="https://github.com/sav7ng/awesome-ai-models" class="text-primary hover:underline">Contribute on GitHub</a>
+                    <span data-i18n="footer.copyright">© 2024 Awesome AI Models.</span>
+                    <a href="https://github.com/sav7ng/awesome-ai-models" class="text-primary hover:underline" data-i18n="footer.contribute">在 GitHub 上贡献</a>
                 </p>
             </div>
         </div>
