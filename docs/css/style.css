@@ -251,21 +251,12 @@ html {
     left: 100%;
 }
 
-/* Remove default hover transform, as we'll handle it with JS */
-.timeline-card:hover {
-    /* transform: translateY(-5px); */
-}
-
 /* Grid Card Hover Effect */
 .grid-card {
     position: relative;
     overflow: hidden;
     height: 100%;
     transform-style: preserve-3d;
-}
-
-.grid-card:hover {
-    /* transform: translateY(-5px); */
 }
 
 /* Gradient text animation */
