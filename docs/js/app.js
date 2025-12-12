@@ -1,14 +1,17 @@
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true,
-    offset: 100
-});
+// Initialize AOS (Animate On Scroll) - with error handling
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
+}
 
-// Initialize Particles.js
-particlesJS('particles-js', {
-    particles: {
+// Initialize Particles.js - with error handling
+if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+        particles: {
         number: {
             value: 80,
             density: {
@@ -85,7 +88,8 @@ particlesJS('particles-js', {
         }
     },
     retina_detect: true
-});
+    });
+}
 
 // Scroll Progress Bar
 window.addEventListener('scroll', () => {
@@ -231,10 +235,16 @@ function applyFilters() {
     filteredModels = allModels.filter(model => {
         const matchesOrg = selectedOrg === 'all' || model.org === selectedOrg;
         const matchesType = selectedType === 'all' || model.tags.includes(selectedType);
+        
+        // Get description text based on current language
+        const description = typeof model.description === 'object' 
+            ? (model.description[i18n.getCurrentLanguage()] || model.description['zh-CN'] || '')
+            : (model.description || '');
+        
         const matchesSearch = !searchTerm || 
             model.name.toLowerCase().includes(searchTerm) ||
             model.org.toLowerCase().includes(searchTerm) ||
-            model.description.toLowerCase().includes(searchTerm);
+            description.toLowerCase().includes(searchTerm);
         
         return matchesOrg && matchesType && matchesSearch;
     });
@@ -284,7 +294,9 @@ function renderModels() {
     }).join('');
     
     // Reinitialize AOS for new elements
-    AOS.refresh();
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
 
 // Create Timeline Card
@@ -296,6 +308,17 @@ function createTimelineCard(model, isLeft, index) {
         month: 'long', 
         day: 'numeric' 
     });
+    
+    // Get description based on current language
+    const description = typeof model.description === 'object' 
+        ? (model.description[i18n.getCurrentLanguage()] || model.description['zh-CN'] || '')
+        : (model.description || '');
+    
+    // Create logo HTML with fallback
+    const logoHtml = model.logoUrl 
+        ? `<img src="${model.logoUrl}" alt="${model.org}" class="w-6 h-6 rounded-full border-2 border-gray-200 dark:border-gray-600 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+           <div class="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold" style="display:none;">${model.org.charAt(0)}</div>`
+        : `<div class="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold">${model.org.charAt(0)}</div>`;
     
     const tags = model.tags.map(tag => {
         const colors = {
@@ -319,19 +342,22 @@ function createTimelineCard(model, isLeft, index) {
             <div class="flex-1 max-w-xl">
                 <div class="timeline-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 group">
                     <div class="flex items-start justify-between mb-3">
-                        <div>
+                        <div class="flex-1">
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary transition-colors">
                                 ${model.name}
                             </h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">${model.org}</p>
+                            <div class="flex items-center gap-2">
+                                ${logoHtml}
+                                <p class="text-sm text-gray-500 dark:text-gray-400">${model.org}</p>
+                            </div>
                         </div>
-                        <span class="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-400 font-mono">
+                        <span class="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-400 font-mono whitespace-nowrap ml-2">
                             ${formattedDate}
                         </span>
                     </div>
                     
                     <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-                        ${model.description}
+                        ${description}
                     </p>
                     
                     <div class="flex items-center justify-between">
@@ -362,6 +388,17 @@ function createGridCard(model, index) {
         day: 'numeric' 
     });
     
+    // Get description based on current language
+    const description = typeof model.description === 'object' 
+        ? (model.description[i18n.getCurrentLanguage()] || model.description['zh-CN'] || '')
+        : (model.description || '');
+    
+    // Create logo HTML with fallback
+    const logoHtml = model.logoUrl 
+        ? `<img src="${model.logoUrl}" alt="${model.org}" class="w-8 h-8 rounded-full border-2 border-gray-200 dark:border-gray-600 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+           <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-bold" style="display:none;">${model.org.charAt(0)}</div>`
+        : `<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-bold">${model.org.charAt(0)}</div>`;
+    
     const tags = model.tags.map(tag => {
         const colors = {
             'LLM': 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
@@ -385,9 +422,13 @@ function createGridCard(model, index) {
                 </span>
             </div>
             
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">${model.org}</p>
+            <div class="flex items-center gap-2 mb-3">
+                ${logoHtml}
+                <p class="text-sm text-gray-500 dark:text-gray-400">${model.org}</p>
+            </div>
+            
             <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-2">
-                ${model.description}
+                ${description}
             </p>
             
             <div class="flex gap-2 flex-wrap mb-4">

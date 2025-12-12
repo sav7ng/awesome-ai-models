@@ -2,225 +2,337 @@
   {
     "name": "BERT",
     "org": "Google",
+    "logoUrl": "https://github.com/google.png",
     "date": "2018-10-11",
     "repo": "https://github.com/google-research/bert",
     "tags": ["LLM"],
-    "description": "双向编码器表示转换器"
+    "description": {
+      "zh-CN": "双向编码器表示转换器",
+      "en": "Bidirectional Encoder Representations from Transformers"
+    }
   },
   {
     "name": "GPT-2",
     "org": "OpenAI",
+    "logoUrl": "https://github.com/openai.png",
     "date": "2019-02-14",
     "repo": "https://github.com/openai/gpt-2",
     "tags": ["LLM"],
-    "description": "生成式预训练转换器 2"
+    "description": {
+      "zh-CN": "生成式预训练转换器 2",
+      "en": "Generative Pre-trained Transformer 2"
+    }
   },
   {
     "name": "CLIP",
     "org": "OpenAI",
+    "logoUrl": "https://github.com/openai.png",
     "date": "2021-01-05",
     "repo": "https://github.com/openai/CLIP",
     "tags": ["Multimodal", "Vision"],
-    "description": "对比语言-图像预训练"
+    "description": {
+      "zh-CN": "对比语言-图像预训练",
+      "en": "Contrastive Language-Image Pre-training"
+    }
   },
   {
     "name": "DALL-E Mini",
     "org": "Hugging Face",
+    "logoUrl": "https://github.com/huggingface.png",
     "date": "2021-07-14",
     "repo": "https://github.com/borisdayma/dalle-mini",
     "tags": ["Multimodal", "Vision"],
-    "description": "文生图模型（现称 Craiyon）"
+    "description": {
+      "zh-CN": "文生图模型（现称 Craiyon）",
+      "en": "Text-to-image model (now known as Craiyon)"
+    }
   },
   {
     "name": "Whisper",
     "org": "OpenAI",
+    "logoUrl": "https://github.com/openai.png",
     "date": "2022-09-21",
     "repo": "https://github.com/openai/whisper",
     "tags": ["Speech"],
-    "description": "通用语音识别模型"
+    "description": {
+      "zh-CN": "通用语音识别模型",
+      "en": "Robust speech recognition via large-scale weak supervision"
+    }
   },
   {
     "name": "Stable Diffusion",
     "org": "Stability AI",
+    "logoUrl": "https://github.com/Stability-AI.png",
     "date": "2022-08-22",
     "repo": "https://github.com/Stability-AI/stablediffusion",
     "tags": ["Vision"],
-    "description": "开源文生图扩散模型"
+    "description": {
+      "zh-CN": "开源文生图扩散模型",
+      "en": "Open-source text-to-image diffusion model"
+    }
   },
   {
     "name": "LLaMA",
     "org": "Meta",
+    "logoUrl": "https://github.com/meta.png",
     "date": "2023-02-24",
     "repo": "https://github.com/facebookresearch/llama",
     "tags": ["LLM"],
-    "description": "大型语言模型 Meta AI"
+    "description": {
+      "zh-CN": "大型语言模型 Meta AI",
+      "en": "Large Language Model Meta AI"
+    }
   },
   {
     "name": "Alpaca",
     "org": "Stanford",
+    "logoUrl": "https://github.com/stanford-nlp.png",
     "date": "2023-03-13",
     "repo": "https://github.com/tatsu-lab/stanford_alpaca",
     "tags": ["LLM"],
-    "description": "基于 LLaMA 的指令微调模型"
+    "description": {
+      "zh-CN": "基于 LLaMA 的指令微调模型",
+      "en": "Instruction-following model fine-tuned from LLaMA"
+    }
   },
   {
     "name": "Vicuna",
     "org": "LMSYS",
+    "logoUrl": "https://github.com/lm-sys.png",
     "date": "2023-03-30",
     "repo": "https://github.com/lm-sys/FastChat",
     "tags": ["LLM"],
-    "description": "基于 LLaMA 的对话模型"
+    "description": {
+      "zh-CN": "基于 LLaMA 的对话模型",
+      "en": "Open-source chatbot trained by fine-tuning LLaMA"
+    }
   },
   {
     "name": "GPT4All",
     "org": "Nomic AI",
+    "logoUrl": "https://github.com/nomic-ai.png",
     "date": "2023-03-27",
     "repo": "https://github.com/nomic-ai/gpt4all",
     "tags": ["LLM"],
-    "description": "可在消费级硬件运行的开源助手"
+    "description": {
+      "zh-CN": "可在消费级硬件运行的开源助手",
+      "en": "Open-source assistant-style large language model"
+    }
   },
   {
     "name": "Dolly 2.0",
     "org": "Databricks",
+    "logoUrl": "https://github.com/databricks.png",
     "date": "2023-04-12",
     "repo": "https://github.com/databrickslabs/dolly",
     "tags": ["LLM"],
-    "description": "首个真正开源的指令微调 LLM"
+    "description": {
+      "zh-CN": "首个真正开源的指令微调 LLM",
+      "en": "First truly open instruction-tuned LLM"
+    }
   },
   {
     "name": "RedPajama",
     "org": "Together",
+    "logoUrl": "https://github.com/togethercomputer.png",
     "date": "2023-04-17",
     "repo": "https://github.com/togethercomputer/RedPajama-Data",
     "tags": ["LLM"],
-    "description": "开源 LLaMA 训练数据集"
+    "description": {
+      "zh-CN": "开源 LLaMA 训练数据集",
+      "en": "Open-source reproduction of LLaMA training dataset"
+    }
   },
   {
     "name": "MPT-7B",
     "org": "MosaicML",
+    "logoUrl": "https://github.com/mosaicml.png",
     "date": "2023-05-05",
     "repo": "https://github.com/mosaicml/llm-foundry",
     "tags": ["LLM"],
-    "description": "商用开源大语言模型"
+    "description": {
+      "zh-CN": "商用开源大语言模型",
+      "en": "Commercial open-source large language model"
+    }
   },
   {
     "name": "Falcon",
     "org": "TII",
+    "logoUrl": "https://github.com/tiiuae.png",
     "date": "2023-05-24",
     "repo": "https://huggingface.co/tiiuae/falcon-40b",
     "tags": ["LLM"],
-    "description": "阿联酋 TII 开源的高性能 LLM"
+    "description": {
+      "zh-CN": "阿联酋 TII 开源的高性能 LLM",
+      "en": "High-performance open-source LLM from UAE's TII"
+    }
   },
   {
     "name": "LLaMA 2",
     "org": "Meta",
+    "logoUrl": "https://github.com/meta.png",
     "date": "2023-07-18",
     "repo": "https://github.com/facebookresearch/llama",
     "tags": ["LLM"],
-    "description": "Meta 第二代开源大语言模型"
+    "description": {
+      "zh-CN": "Meta 第二代开源大语言模型",
+      "en": "Next generation of Meta's open-source large language model"
+    }
   },
   {
     "name": "CodeLlama",
     "org": "Meta",
+    "logoUrl": "https://github.com/meta.png",
     "date": "2023-08-24",
     "repo": "https://github.com/facebookresearch/codellama",
     "tags": ["LLM"],
-    "description": "基于 LLaMA 2 的代码生成模型"
+    "description": {
+      "zh-CN": "基于 LLaMA 2 的代码生成模型",
+      "en": "Code generation model built on top of LLaMA 2"
+    }
   },
   {
     "name": "Mistral 7B",
     "org": "Mistral AI",
+    "logoUrl": "https://github.com/mistralai.png",
     "date": "2023-09-27",
     "repo": "https://github.com/mistralai/mistral-src",
     "tags": ["LLM"],
-    "description": "高性能 7B 开源模型"
+    "description": {
+      "zh-CN": "高性能 7B 开源模型",
+      "en": "High-performance 7B open-source model"
+    }
   },
   {
     "name": "Zephyr",
     "org": "Hugging Face",
+    "logoUrl": "https://github.com/huggingface.png",
     "date": "2023-10-25",
     "repo": "https://github.com/huggingface/alignment-handbook",
     "tags": ["LLM"],
-    "description": "基于 Mistral 的对齐模型"
+    "description": {
+      "zh-CN": "基于 Mistral 的对齐模型",
+      "en": "Aligned model series based on Mistral"
+    }
   },
   {
     "name": "Mixtral 8x7B",
     "org": "Mistral AI",
+    "logoUrl": "https://github.com/mistralai.png",
     "date": "2023-12-11",
     "repo": "https://github.com/mistralai/mistral-src",
     "tags": ["LLM"],
-    "description": "开源混合专家（MoE）模型"
+    "description": {
+      "zh-CN": "开源混合专家（MoE）模型",
+      "en": "Open-source Mixture of Experts (MoE) model"
+    }
   },
   {
     "name": "LLaVA",
     "org": "Microsoft",
+    "logoUrl": "https://github.com/microsoft.png",
     "date": "2023-04-17",
     "repo": "https://github.com/haotian-liu/LLaVA",
     "tags": ["Multimodal"],
-    "description": "大型语言与视觉助手"
+    "description": {
+      "zh-CN": "大型语言与视觉助手",
+      "en": "Large Language and Vision Assistant"
+    }
   },
   {
     "name": "Bark",
     "org": "Suno",
+    "logoUrl": "https://github.com/suno-ai.png",
     "date": "2023-04-07",
     "repo": "https://github.com/suno-ai/bark",
     "tags": ["Speech"],
-    "description": "文本到音频生成模型"
+    "description": {
+      "zh-CN": "文本到音频生成模型",
+      "en": "Text-to-audio generation model"
+    }
   },
   {
     "name": "Gemma",
     "org": "Google",
+    "logoUrl": "https://github.com/google.png",
     "date": "2024-02-21",
     "repo": "https://github.com/google/gemma_pytorch",
     "tags": ["LLM"],
-    "description": "Google 开源的轻量级模型"
+    "description": {
+      "zh-CN": "Google 开源的轻量级模型",
+      "en": "Lightweight open models by Google"
+    }
   },
   {
     "name": "DeepSeek-V2",
     "org": "DeepSeek",
+    "logoUrl": "https://github.com/deepseek-ai.png",
     "date": "2024-05-06",
     "repo": "https://github.com/deepseek-ai/DeepSeek-V2",
     "tags": ["LLM"],
-    "description": "中国 DeepSeek 开源的 MoE 模型"
+    "description": {
+      "zh-CN": "中国 DeepSeek 开源的 MoE 模型",
+      "en": "Open-source MoE model from DeepSeek (China)"
+    }
   },
   {
     "name": "Qwen 2",
     "org": "Alibaba",
+    "logoUrl": "https://github.com/alibaba.png",
     "date": "2024-06-07",
     "repo": "https://github.com/QwenLM/Qwen2",
     "tags": ["LLM", "Multimodal"],
-    "description": "阿里巴巴通义千问 2"
+    "description": {
+      "zh-CN": "阿里巴巴通义千问 2",
+      "en": "Alibaba's Qwen (Tongyi Qianwen) 2"
+    }
   },
   {
     "name": "LLaMA 3",
     "org": "Meta",
+    "logoUrl": "https://github.com/meta.png",
     "date": "2024-04-18",
     "repo": "https://github.com/meta-llama/llama3",
     "tags": ["LLM"],
-    "description": "Meta 第三代开源大语言模型"
+    "description": {
+      "zh-CN": "Meta 第三代开源大语言模型",
+      "en": "Third generation of Meta's open-source large language model"
+    }
   },
   {
     "name": "Phi-3",
     "org": "Microsoft",
+    "logoUrl": "https://github.com/microsoft.png",
     "date": "2024-04-23",
     "repo": "https://github.com/microsoft/Phi-3CookBook",
     "tags": ["LLM"],
-    "description": "微软小型语言模型系列"
+    "description": {
+      "zh-CN": "微软小型语言模型系列",
+      "en": "Microsoft's small language model series"
+    }
   },
   {
     "name": "Grok-1",
     "org": "xAI",
+    "logoUrl": "https://github.com/xai-org.png",
     "date": "2024-03-17",
     "repo": "https://github.com/xai-org/grok-1",
     "tags": ["LLM"],
-    "description": "马斯克 xAI 开源的 314B 模型"
+    "description": {
+      "zh-CN": "马斯克 xAI 开源的 314B 模型",
+      "en": "314B parameter model open-sourced by Elon Musk's xAI"
+    }
   },
   {
     "name": "FLUX",
     "org": "Black Forest Labs",
+    "logoUrl": "https://github.com/black-forest-labs.png",
     "date": "2024-08-01",
     "repo": "https://github.com/black-forest-labs/flux",
     "tags": ["Vision"],
-    "description": "新一代开源文生图模型"
+    "description": {
+      "zh-CN": "新一代开源文生图模型",
+      "en": "Next-generation open-source text-to-image model"
+    }
   }
 ]
