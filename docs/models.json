@@ -96,6 +96,18 @@
     }
   },
   {
+    "name": "ChatGLM-6B",
+    "org": "Zhipu AI",
+    "logoUrl": "https://github.com/THUDM.png",
+    "date": "2023-03-14",
+    "repo": "https://github.com/THUDM/ChatGLM-6B",
+    "tags": ["LLM"],
+    "description": {
+      "zh-CN": "清华与智谱开源的双语对话模型",
+      "en": "Bilingual conversational model by Tsinghua & Zhipu AI"
+    }
+  },
+  {
     "name": "Vicuna",
     "org": "LMSYS",
     "logoUrl": "https://github.com/lm-sys.png",
@@ -216,6 +228,18 @@
     }
   },
   {
+    "name": "ChatGLM3",
+    "org": "Zhipu AI",
+    "logoUrl": "https://github.com/THUDM.png",
+    "date": "2023-10-27",
+    "repo": "https://github.com/THUDM/ChatGLM3",
+    "tags": ["LLM"],
+    "description": {
+      "zh-CN": "更强大的新一代 ChatGLM",
+      "en": "More powerful next-generation ChatGLM"
+    }
+  },
+  {
     "name": "Mixtral 8x7B",
     "org": "Mistral AI",
     "logoUrl": "https://github.com/mistralai.png",
@@ -273,6 +297,18 @@
     "description": {
       "zh-CN": "中国 DeepSeek 开源的 MoE 模型",
       "en": "Open-source MoE model from DeepSeek (China)"
+    }
+  },
+  {
+    "name": "GLM-4",
+    "org": "Zhipu AI",
+    "logoUrl": "https://github.com/THUDM.png",
+    "date": "2024-06-05",
+    "repo": "https://github.com/THUDM/GLM-4",
+    "tags": ["LLM"],
+    "description": {
+      "zh-CN": "智谱新一代基座大模型",
+      "en": "Zhipu AI's next-gen foundation model"
     }
   },
   {
@@ -417,6 +453,18 @@
     "description": {
       "zh-CN": "Meta 第四代开源大语言模型",
       "en": "Meta's 4th generation open-source LLM"
+    }
+  },
+  {
+    "name": "AutoGLM-Phone-9B",
+    "org": "Zhipu AI",
+    "logoUrl": "https://github.com/zai-org.png",
+    "date": "2025-12-08",
+    "repo": "https://github.com/zai-org/Open-AutoGLM",
+    "tags": ["Agent"],
+    "description": {
+      "zh-CN": "智谱开源的端侧手机操作智能体",
+      "en": "Open-source on-device phone operation agent by Zhipu"
     }
   }
 ]
